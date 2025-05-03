@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { exec } = require("child_process")
 require('dotenv').config({ path: './.env' })
+require('ts-node')
 const {
   Client,
   GatewayIntentBits,
@@ -16,7 +17,7 @@ const client = new Client({
   partials: [Partials.Channel],
 });
 
-const basefile = require("./std/base");
+const basefile = require("./std/base.ts");
 
 const express = require("express");
 const app = express();

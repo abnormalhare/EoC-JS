@@ -1,5 +1,10 @@
 const fs = require("fs/promises");
 
+const MAX_CARDS = 40;
+const MAX_HEALTH = 30;
+const PLAYER_COLOR = 0xFF0000;
+const OPPONENT_COLOR = 0x0000FF;
+
 var packs;
 var cards;
 var players;
@@ -35,4 +40,10 @@ const save = async () => {
 
     await fs.writeFile("./data.json", JSON.stringify(data, null, 2));
     console.log("Data saved!");
+}
+
+const init_player = (id, name) => {
+    if (!(id.toString() in players)) {
+        
+    }
 }
