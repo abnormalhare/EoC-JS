@@ -1,6 +1,7 @@
 // discord bs
 const fs = require("node:fs");
 const path = require("node:path");
+const { exec } = require("child_process")
 require('dotenv').config({ path: './.env' })
 const {
   Client,
@@ -49,14 +50,14 @@ for (const file of commandFiles) {
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-//   basefile.start();
+  basefile.start();
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (interaction.isButton()) {
     console.log(`${interaction.user.username}, ${interaction.customId}`);
     // basefile.button(interaction);
-    // await basefile.save();
+    await basefile.save();
     return;
   }
 
@@ -71,13 +72,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
   console.log(`${interaction.user.username}, ${interaction.commandName}`);
   let cmd = await command.execute(interaction);
   await cmd(interaction);
-  await basefile.save();
-});
-
-client.on("messageCreate", async (interaction) => {
-  if (interaction.author.bot) return;
-
-  await basefile.updateInfo(interaction);
   await basefile.save();
 });
 
